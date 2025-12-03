@@ -50,7 +50,7 @@
           <br>
           <template v-if="invoice">
               <div class="subheader-1">
-                  <div class="title">Too</div>
+                  <div class="title">To</div>
               </div>
               <template v-if="invoice">
                   <div class="subheader-2">
@@ -70,11 +70,14 @@
                                       <template v-if="business.Street1">
                                           <div class="meta date-tag">ADDRESS</div>{{ business.Street1 }},
                                       </template>
+
                                       <template v-if="business.Street2">
                                           <div class="meta date-tag"></div>{{ business.Street2 }},
                                       </template>
+                                      <br />
                                       <div class="meta date-tag"></div>{{ business.City }} {{ business.State }} {{ business.Zip }}
                                       <template v-if="business.Country">
+                                          <br />
                                           <div class="meta date-tag"></div>{{ business.Country }}
                                       </template>
                                   </template>
