@@ -1,0 +1,407 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+
+body {
+    font-family: Inter, sans-serif;
+    line-height: 1.1;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 5px;
+}
+
+
+.invoiceheader {
+    font-size: 90px;
+    font-weight: 700;
+    color: #272727;
+    display: inline-block
+}
+
+.subtitle {
+    text-transform: uppercase;
+    padding-right: 20px;
+    float: left;
+    font-weight: bold;
+}
+#element1 {
+    padding-right: 176px;
+    float: left;
+    font-weight: bold;
+    display: inline-block;
+}
+
+#element1b {
+    padding-right: 211px;
+    float: left;
+    font-weight: bold;
+    display: inline-block;
+}
+
+#element1c {
+    padding-right: 214px;
+    float: left;
+    font-weight: bold;
+    display: inline-block;
+}
+
+#element2 {
+    display: inline-block;
+    float: left;
+    font-weight: bold;
+}
+
+
+#element3 {
+    padding-right: 161px;
+    float: left;
+    font-weight: bold;
+    display: inline-block;
+    font-size: 33px;
+}
+
+#element4 {
+    display: inline-block;
+    float: left;
+    font-weight: bold;
+    font-size: 33px;
+}
+
+.subheader-1 {
+    padding-right: 330px;
+    float: left;
+    display: inline-block;
+    font-size: 33px;
+    font-weight: bold;
+    color: #272727;
+}
+
+.subheader-2 {
+    display: inline-block;
+    float: left;
+    font-size: 33px;
+    font-weight: bold;
+    color: #272727;
+}
+
+
+.subheader-things {
+    font-size: 33px;
+    font-weight: bold;
+    color: #272727;
+}
+
+.payment-methods {
+    margin: 20px 0;
+    line-height: 1.1;
+}
+
+.meta {
+    color: #272727;
+}
+
+.header .title {
+  font-size: 300%;
+  font-weight: bold;
+}
+
+.header .meta {
+    letter-spacing: -2px;
+}
+
+.logo {
+    display: flex;
+    align-items: flex-start;
+}
+
+.header {
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+.logo img {
+    max-height: 90px;
+    height: auto;
+    width: auto;
+    display: inline-block
+}
+
+.info .meta {
+  text-transform: uppercase;
+}
+
+
+.supplier {
+    color: #272727;
+    display: block;
+}
+
+.block {
+  display: block;
+  flex: auto;
+  margin-bottom: 20px;
+}
+
+.client, .items, .summary {
+    margin-top: 1.1em;
+    margin-bottom: 1em;
+    -webkit-print-color-adjust: exact !important;
+    color-adjust: exact !important;
+}
+
+    .client .title, .summary .title {
+        color: #272727;
+        font-weight: bold;
+    }
+
+.client .details, .summary .details {
+  background-color: var(--grist-theme-page-panels-main-panel-bg);
+}
+
+table.items {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+    table.items th {
+        text-align: left;
+        color: #272727;
+        font-weight: semibold;
+    }
+
+table.items td {
+  background-color: var(--grist-theme-page-panels-main-panel-bg);
+}
+
+.client .title, .summary .title, table.items th, .help .title {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  font-size: 33px;
+}
+
+.money, .number {
+  text-align: left;
+}
+
+.name {
+    color: #272727;
+}
+
+.address {
+  padding-bottom: 1em;
+}
+
+div.date-tag {
+    display: inline-block;
+    min-width: 130px;
+}
+
+div.top {
+  display: flex;
+  width: 100%;
+  padding: 0px;
+  justify-content: space-between;
+}
+
+div.summary {
+  width: 100%;
+  padding: 0px;
+}
+
+div.summary .part, div.summary .total {
+  padding: 10px;
+}
+
+div.summary .part {
+  width: 20%;
+  padding-right: 20px;
+}
+
+div.summary .total {
+  display: block;
+  flex-grow: 1;
+  font-size: 140%;
+}
+
+div.summary {
+  border-top-right-radius: 2em;
+  border-bottom-right-radius: 2em;
+}
+
+div.summary .total {
+  border-top-right-radius: 0.5em;
+  border-bottom-right-radius: 0.5em;
+}
+
+div.summary .title, div.summary .details {
+  text-align: left;
+}
+
+div.summary::after {
+  content: '';
+  display: block;
+  clear: both;
+}
+
+.phone::before {
+  content: "\260e";
+  margin-right: 0.5em;
+}
+
+.email::before {
+  content: "\2709";
+  margin-right: 0.5em;  
+}
+
+.thanks {
+    text-align: right;
+    color: #272727;
+    font-size: 200%;
+}
+
+
+
+div.instructions, .newlined, p.note {
+  white-space: pre-line;
+}
+
+div.paid {
+    position: relative;
+    left: 40%;
+    color: #272727;
+    rotate: 15deg;
+    font-size: 80px;
+    top: 20px;
+    border: 5px;
+    float: left;
+    font-weight: bolder;
+}
+
+.app {
+  position: relative;
+}
+
+@media print {
+  div.print {
+    display: none;
+  }
+}
+
+div.print {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+}
+
+    div.print a {
+        display: block;
+        letter-spacing: -1px;
+        font-weight: bold;
+        font-size: 200%;
+        color: #272727;
+        text-decoration: none;
+        padding: 0.25em;
+        padding-top: 0.5em;
+        padding-right: 0.5em;
+        border-top-right-radius: 0.5em;
+        text-transform: uppercase;
+    }
+
+div.print a:hover {
+  background: gray;
+}
+
+.done {
+  text-decoration: line-through;
+}
+
+div.column-name {
+  display: inline-block;
+}
+
+.column-name {
+    color: #272727;
+    margin: 2px;
+    padding: 2px;
+    border-radius: 2px;
+    font-style: normal;
+}
+
+.column-recognized {
+  background: green;
+}
+
+.column-expected {
+  background: blue;
+}
+
+.column-ignored {
+  background: red;
+}
+
+.help {
+    padding: 1px;
+    margin-top: 1em;
+    margin-bottom: 1em;
+    background: black;
+    color: #272727;
+}
+
+.help .details {
+  padding: 4px;
+}
+
+.help table {
+  border: none;
+}
+
+.help td.key {
+  text-align: right;
+}
+
+.help table {
+  padding-bottom: 3px;
+}
+
+.help-close {
+  display: float;
+  float: right;
+  max-width: 150px;
+  padding: 5px;
+  border-left: 1px solid white;
+  border-bottom-left-radius: 5px;
+  font-size: 80%;
+  font-style: italic;
+}
+
+.help pre {
+    display: inline-block;
+    background: #ddd;
+    color: #272727;
+    padding: 0.25em;
+    margin-left: 1em;
+}
+
+.help .title {
+  margin-left: 4px;
+  text-transform: uppercase;
+}
+
+.status {
+  padding: 4px;
+}
+
+    .status .button {
+        display: inline-block;
+        text-decoration: none;
+        color: #272727;
+        background: #ddd;
+        padding-left: 0.5em;
+        padding-right: 0.5em;
+        padding-top: 1px;
+        padding-bottom: 1px;
+        margin-top: 1px;
+        margin-bottom: 1px;
+        border-radius: 0.25em;
+    }
+
