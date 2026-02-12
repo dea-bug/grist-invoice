@@ -63,8 +63,8 @@
                           <div class="client" v-for="business in (invoice.Client ? [invoice.Client] : [])">
                               <div class="details">
                                   <template v-if="typeof(business) === 'string'">
-                                      <div class="meta date-tag">CLIENT / ADDRESS</div>
-                                      <div class="newlined">{{ business }}</div>
+                                      <div class="meta date-tag">CLIENT</div>{{ business.Name }}</div>
+                                      <div class="meta date-tag">ADDRESS</div>{{ business.Street1 }},
                                   </template>
                                   <template v-else>
                                       <div><div class="meta date-tag">CLIENT</div>{{ business.Name }}</div>
