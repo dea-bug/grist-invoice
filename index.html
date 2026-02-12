@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+  <head>
     <meta charset="utf-8">
     <title>Grist Invoice</title>
 
@@ -14,248 +14,245 @@
     <script src="exampleData.js"></script>
 
     <link rel="stylesheet" href="invoice.css?ver=17">
-</head>
-<body>
-    <div id="app">
-        <div class="status" v-if="status">
-            <template v-if="status === 'waiting'">
-                <p>Waiting for data...</p>
-                <ul>
-                    <li v-bind:class="[tableConnected ? 'done' : '']">I need <b>read table</b> access.</li>
-                    <li v-bind:class="[haveRows ? 'done' : '']">I need at least one row of data.</li>
-                    <li v-bind:class="[rowConnected ? 'done' : '']">I need <b>Select By</b> set.</li>
-                </ul>
-                <p>Examples:</p>
-                <ul>
-                    <li><a class="button" href="index.html?demo=1">A filled out invoice</a></li>
-                    <li><a class="button" href="index.html?labels=1">A labelled invoice</a></li>
-                </ul>
-            </template>
-            <template v-else>
-                {{ status }}
-            </template>
-        </div>
+  </head>
+  <body>
+      <div id="app">
+          <div class="status" v-if="status">
+              <template v-if="status === 'waiting'">
+                  <p>Waiting for data...</p>
+                  <ul>
+                      <li v-bind:class="[tableConnected ? 'done' : '']">I need <b>read table</b> access.</li>
+                      <li v-bind:class="[haveRows ? 'done' : '']">I need at least one row of data.</li>
+                      <li v-bind:class="[rowConnected ? 'done' : '']">I need <b>Select By</b> set.</li>
+                  </ul>
+                  <p>Examples:</p>
+                  <ul>
+                      <li><a class="button" href="index.html?demo=1">A filled out invoice</a></li>
+                      <li><a class="button" href="index.html?labels=1">A labelled invoice</a></li>
+                  </ul>
+              </template>
+              <template v-else>
+                  {{ status }}
+              </template>
+          </div>
 
-        <div class="top">
-            <div class="logo">
-                <img src="joybirdstudios_logo_black_transparent.png" alt="Grist Labs">
-            </div>
-            <div class="invoiceheader">
-                <div class="title">INVOICE</div>
-            </div>
-        </div>
-        <br>
-        <br>
-        <br>
-        <br>
-        <template v-if="invoice">
-            <div class="subheader-1">
-                <div class="title">To</div>
-            </div>
-            <template v-if="invoice">
-                <div class="subheader-2">
-                    <div class="title">From</div>
-                </div>
-                <br />
-                <div class="top">
-                    <div class="logo">
+          <div class="top">
+              <div class="logo">
+                  <img src="joybirdstudios_logo_black_transparent.png" alt="Grist Labs">
+              </div>
+              <div class="invoiceheader">
+                  <div class="title">INVOICE</div>
+              </div>
+          </div>
+          <br>
+          <br>
+          <br>
+          <br>
+          <template v-if="invoice">
+              <div class="subheader-1">
+                  <div class="title">To</div>
+              </div>
+              <template v-if="invoice">
+                  <div class="subheader-2">
+                      <div class="title">From</div>
+                  </div>
+                  <br />
+                  <div class="top">
+                      <div class="logo">
 
-                        <div class="client" v-for="business in (invoice.Client ? [invoice.Client] : [])">
-                            <div class="details">
-                                <template v-if="typeof(business) === 'string'">
-                                    <div class="newlined">{{ business }}</div>
-                                </template>
-                                <template v-else>
-                                    <div><div class="meta date-tag">CLIENT</div>{{ business.Name }}</div>
-                                    <template v-if="business.Street1">
-                                        <div class="meta date-tag">ADDRESS</div>
-                                        {{ business.Street1 }},
-                                    </template>
+                          <div class="client" v-for="business in (invoice.Client ? [invoice.Client] : [])">
+                              <div class="details">
+                                  <template v-if="typeof(business) === 'string'">
+                                      <div class="meta date-tag">CLIENT / ADDRESS</div>
+                                      <div class="newlined">{{ business }}</div>
+                                  </template>
+                                  <template v-else>
+                                      <div><div class="meta date-tag">CLIENT</div>{{ business.Name }}</div>
+                                      <template v-if="business.Street1">
+                                          <div class="meta date-tag">ADDRESS</div>{{ business.Street1 }},
+                                      </template>
 
-                                    <template v-if="business.Street2">
-                                        <div class="meta date-tag"></div>
-                                        {{ business.Street2 }},
-                                    </template>
-                                    <br />
-                                    <div class="meta date-tag"></div>
-                                    {{ business.City }} {{ business.State }} {{ business.Zip }}
-                                    <template v-if="business.Country">
-                                        <br />
-                                        <div class="meta date-tag"></div>
-                                        {{ business.Country }}
-                                    </template>
-                                </template>
-                            </div>
-                        </div>
-                    </div>
+                                      <template v-if="business.Street2">
+                                          <div class="meta date-tag"></div>{{ business.Street2 }},
+                                      </template>
+                                      <br />
+                                      <div class="meta date-tag"></div>{{ business.City }} {{ business.State }} {{ business.Zip }}
+                                      <template v-if="business.Country">
+                                          <br />
+                                          <div class="meta date-tag"></div>{{ business.Country }}
+                                      </template>
+                                  </template>
+                              </div>
+                          </div>
+                      </div>
 
-                    <div class="supplier">
-                        <div v-for="business in (invoice.Invoicer ? [invoice.Invoicer] : [])">
-                            <template v-if="typeof(business) === 'string'">
-                                <div class="address newlined">{{ business }}</div>
-                            </template>
+                      <div class="supplier">
+                          <div v-for="business in (invoice.Invoicer ? [invoice.Invoicer] : [])">
+                              <template v-if="typeof(business) === 'string'">
+                                  <div class="address newlined">{{ business }}</div>
+                              </template>
 
-                            <template v-else>
-                                <br />
-                                <template v-if="business.Email">
-                                    <div class="website"><div class="meta date-tag">INFO</div>{{ business.Email }}</div>
-                                </template>
-                                <template v-if="business.Website">
-                                    <div class="website"><div class="meta date-tag">WEBSITE</div>{{ business.Website }}</a></div>
-                                </template>
-                            </template>
-                            <span class="name"><div class="meta date-tag">ADDRESS</div>{{ business.Name }}</span><br />
-                            <div class="meta date-tag"></div>{{ business.Street1 }}<br />
-                            <template v-if="business.Street2">
-                                <div class="meta date-tag"></div>
-                                {{ business.Street2 }}
-                                <br />
-                            </template>
-                            <div class="meta date-tag"></div>{{ business.City }} {{ business.State }} {{ business.Zip }}<br />
-                            <template v-if="business.Country">
-                                <div class="meta date-tag"></div>
-                                {{ business.Country }}
-                                <br />
-                            </template>
-                            <div class="subheader-things">
-                                <div class="title">Details</div>
-                            </div>
-                            <div class="block">
-                                <div class="header">
-                                </div>
-                                <div class="info"><span class="meta"><div class="meta date-tag">INVOICE</div></span>#{{ invoice.Number }}</div>
-                                <div class="info"><span class="meta"><div class="meta date-tag">PROJECT</div></span>{{ invoice.Project }}</div>
-                                <div class="info" v-if="invoice.Issued"><div class="meta date-tag">Issued</div>{{ invoice.Issued | asDate }}</div>
-                                <div class="info" v-if="invoice.Due"><div class="meta date-tag">Due</div>{{ invoice.Due | asDate }}</div>
-                            </div>
-                            <div class="subheader-things">
-                                <div class="title">Payment</div>
-                            </div>
-                            <div class="payment-methods">
-                                <div class="info"><span class="meta"><div class="meta date-tag">CHECKS</div></span>Payable to Joybird Studios</div>
-                                <div class="info"><span class="meta"><div class="meta date-tag">ZELLE</div></span>Deana@JoybirdStudios.com</div>
-                                <div class="info"><span class="meta"><div class="meta date-tag">PAYPAL</div></span>@joybirdstudios</div>
-                                <div class="info"><span class="meta"><div class="meta date-tag">VENMO</div></span>@joybirdstudios</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                              <template v-else>
+                                  <br />
+                                  <template v-if="business.Email">
+                                      <div class="website"><div class="meta date-tag">INFO</div>{{ business.Email }}</div>
+                                  </template>
+                                  <template v-if="business.Website">
+                                      <div class="website"><div class="meta date-tag">WEBSITE</div>{{ business.Website }}</a></div>
+                                  </template>
+                              </template>
+                              <span class="name"><div class="meta date-tag">ADDRESS</div>{{ business.Name }}</span><br />
+                              <div class="meta date-tag"></div>{{ business.Street1 }}<br />
+                              <template v-if="business.Street2">
+                                  <div class="meta date-tag"></div>
+                                  {{ business.Street2 }}
+                                  <br />
+                              </template>
+                              <div class="meta date-tag"></div>{{ business.City }} {{ business.State }} {{ business.Zip }}<br />
+                              <template v-if="business.Country">
+                                  <div class="meta date-tag"></div>
+                                  {{ business.Country }}
+                                  <br />
+                              </template>
+                              <div class="subheader-things">
+                                  <div class="title">Details</div>
+                              </div>
+                              <div class="block">
+                                  <div class="header">
+                                  </div>
+                                  <div class="info"><span class="meta"><div class="meta date-tag">INVOICE</div></span>#{{ invoice.Number }}</div>
+                                  <div class="info"><span class="meta"><div class="meta date-tag">PROJECT</div></span>{{ invoice.Project }}</div>
+                                  <div class="info" v-if="invoice.Issued"><div class="meta date-tag">Issued</div>{{ invoice.Issued | asDate }}</div>
+                                  <div class="info" v-if="invoice.Due"><div class="meta date-tag">Due</div>{{ invoice.Due | asDate }}</div>
+                              </div>
+                              <div class="subheader-things">
+                                  <div class="title">Payment</div>
+                              </div>
+                              <div class="payment-methods">
+                                  <div class="info"><span class="meta"><div class="meta date-tag">CHECKS</div></span>Payable to Joybird Studios</div>
+                                  <div class="info"><span class="meta"><div class="meta date-tag">ZELLE</div></span>Deana@JoybirdStudios.com</div>   
+                                  <div class="info"><span class="meta"><div class="meta date-tag">PAYPAL</div></span>@joybirdstudios</div>
+                                  <div class="info"><span class="meta"><div class="meta date-tag">VENMO</div></span>@joybirdstudios</div>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
 
-                <table class="items">
-                    <template v-if="!Array.isArray(invoice.Items)">
-                        <tr>
-                            <th>Description</th>
-                            <th class="money">Total</th>
-                        </tr>
-                        <tr>
-                            <td>{{ invoice.Items }}</td>
-                            <td class="money">{{ invoice.Total | currency }}</td>
-                        </tr>
-                    </template>
-                    <BR />
-                    <template v-else>
-                        <tr>
-                            <th></th>
-                            <th>Services</th>
-                            <th class="money">Rate</th>
-                            <th class="number">Qty.</th>
-                            <th class="money">Subtotal</th>
-                        </tr>
-                        <tr v-for="item in invoice.Items">
-                            <td>{{ item.Date }}</td>
-                            <td>{{ item.Description }}</td>
-                            <td class="money">{{ item.Price | currency }}</td>
-                            <td class="number">{{ item.Quantity }}</td>
-                            <td class="money">{{ item.Total | currency }}</td>
-                        </tr>
-                    </template>
-                </table>
-                <br>
-                <div class="summary">
-                    <div id="element1">
-                        Subtotal
-                    </div>
-                    <div id="element2">
-                        {{ invoice.Subtotal | currency }}
-                    </div>
-                    <br />
-                    <div id="element1b">
-                        Adj.
-                    </div>
-                    <div id="element2">
-                        {{ invoice.Deduction | currency }}
-                    </div>
-                    <br />
-                    <div id="element1c">
-                        Tax
-                    </div>
-                    <div id="element2">
-                        {{ invoice.Taxes | currency }}
-                    </div>
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <div id="element3">
-                        Total
-                    </div>
-                    <div id="element4">
-                        {{ invoice.Total | currency }}
-                    </div>
-                    <br />
+                  <table class="items">
+                      <template v-if="!Array.isArray(invoice.Items)">
+                          <tr>
+                              <th>Description</th>
+                              <th class="money">Total</th>
+                          </tr>
+                          <tr>
+                              <td>{{ invoice.Items }}</td>
+                              <td class="money">{{ invoice.Total | currency }}</td>
+                          </tr>
+                      </template>
+                      <BR />
+                      <template v-else>
+                          <tr>
+                              <th></th>
+                              <th>Services</th>
+                              <th class="money">Rate</th>
+                              <th class="number">Qty.</th>
+                              <th class="money">Subtotal</th>
+                          </tr>
+                          <tr v-for="item in invoice.Items">
+                              <td>{{ item.Date }}</td>
+                              <td>{{ item.Description }}</td>
+                              <td class="money">{{ item.Price | currency }}</td>
+                              <td class="number">{{ item.Quantity }}</td>
+                              <td class="money">{{ item.Total | currency }}</td>
+                          </tr>
+                      </template>
+                  </table>
+                  <br>
+                  <div class="summary">
+                      <div id="element1">
+                          Subtotal
+                      </div>
+                      <div id="element2">
+                          {{ invoice.Subtotal | currency }}
+                      </div>
+                      <br />
+                      <div id="element1b">
+                          Adj.
+                      </div>
+                      <div id="element2">
+                          {{ invoice.Deduction | currency }}
+                      </div>
+                      <br />
+                      <div id="element1c">
+                          Tax
+                      </div>
+                      <div id="element2">
+                          {{ invoice.Taxes | currency }}
+                      </div>
+                      <br />
+                      <br />
+                      <br />
+                      <br />
+                      <div id="element3">
+                          Total
+                      </div>
+                      <div id="element4">
+                          {{ invoice.Total | currency }}
+                      </div>
+                      <br />
 
-                </div>
-                <br>
-                <br>
-                <template v-if="invoice.Note">
-                    <p class="note">{{ invoice.Note }}</p>
+                  </div>
+                  <br>
+                  <br>
+                  <template v-if="invoice.Note">
+                      <p class="note">{{ invoice.Note }}</p>
 
-                </template>
+                  </template>
 
-                <template v-for="help in (invoice.Help ? [invoice.Help] : [])">
-                    <div class="help">
-                        <div class="help-close">
-                            Add <span class="column-name">Due</span> or <span class="column-name">Issued</span> date to hide this help.
-                        </div>
-                        <div class="title">Column information</div>
-                        <div class="details">
-                            <table>
-                                <tr v-for="group in ['recognized', 'expected', 'ignored']">
-                                    <td class="key">{{ group }}</td>
-                                    <td>
-                                        <template v-if="group in help">
-                                            <div v-bind:class="['column-name', 'column-' + group]" v-for="col in help[group]">{{col}}</div>
-                                        </template>
-                                        <template v-else>
-                                            &mdash;
-                                        </template>
-                                    </td>
-                                </tr>
-                            </table>
-                            <template v-if="invoice.SuggestReferencesColumn">
-                                <div>For structured address and item information, add a <span class="column-name">References</span> column with this formula:</div>
-                                <div>
-                                    <pre>RECORD(rec, expand_refs=1)</pre>
-                                </div>
-                            </template>
-                        </div>
-                    </div>
-                </template>
-                <template v-if="invoice.Paid">
-                    <div class="paid">
+                  <template v-for="help in (invoice.Help ? [invoice.Help] : [])">
+                      <div class="help">
+                          <div class="help-close">
+                              Add <span class="column-name">Due</span> or <span class="column-name">Issued</span> date to hide this help.
+                          </div>
+                          <div class="title">Column information</div>
+                          <div class="details">
+                              <table>
+                                  <tr v-for="group in ['recognized', 'expected', 'ignored']">
+                                      <td class="key">{{ group }}</td>
+                                      <td>
+                                          <template v-if="group in help">
+                                              <div v-bind:class="['column-name', 'column-' + group]" v-for="col in help[group]">{{col}}</div>
+                                          </template>
+                                          <template v-else>
+                                              &mdash;
+                                          </template>
+                                      </td>
+                                  </tr>
+                              </table>
+                              <template v-if="invoice.SuggestReferencesColumn">
+                                  <div>For structured address and item information, add a <span class="column-name">References</span> column with this formula:</div>
+                                  <div>
+                                      <pre>RECORD(rec, expand_refs=1)</pre>
+                                  </div>
+                              </template>
+                          </div>
+                      </div>
+                  </template>
+                  <template v-if="invoice.Paid">
+                      <div class="paid">
 
-                    </div>
-                </template>
+                      </div>
+                  </template>
 
-                <div class="footer">
-                    <div class="thanks">
-                    </div>
-                </div>
+                  <div class="footer">
+                      <div class="thanks">
+                      </div>
+                  </div>
 
-                <div class="print">
-                    <a href="javascript:window.print()">Print</a>
-                </div>
-            </template>
-    </div>
-</body>
+                  <div class="print">
+                      <a href="javascript:window.print()">Print</a>
+                  </div>
+              </template>
+</div>
+  </body>
 </html>
