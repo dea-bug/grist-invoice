@@ -143,7 +143,6 @@ body {
 }
 
 .client, .items, .summary {
-    margin-top: 1.1em;
     margin-bottom: 1em;
     -webkit-print-color-adjust: exact !important;
     color-adjust: exact !important;
@@ -174,8 +173,7 @@ table.items td {
 }
 
 .client .title, .summary .title, table.items th, .help .title {
-  padding-top: 10px;
-  padding-bottom: 10px;
+  padding-bottom: 15px; 
   font-size: 33px;
 }
 
